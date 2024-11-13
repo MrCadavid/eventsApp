@@ -16,11 +16,13 @@ export class AuthGuard implements CanActivate {
     if (typeof window !== 'undefined') {
       const isAuthenticated = localStorage.getItem(environment.tokenKey) !== null;
       if (!isAuthenticated) {
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/auth/login']);
         return false;
       }
+      return true;
+
     }
-    return true;
+    return false;
 
   }
 }
