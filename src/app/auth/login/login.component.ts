@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { Component, OnInit, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthUseCases } from '@core/application/auth/use-cases/auth-usecases';
-import { NgOptimizedImage } from '@angular/common';
+import { AuthUseCases } from '@application/auth/use-cases/auth.usecases';
+import {environment} from '@env/environment';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import {environment} from '@env/environment';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({

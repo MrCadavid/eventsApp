@@ -1,7 +1,7 @@
 
 import {Injectable} from '@angular/core';
-import { AuthGateway } from '@core/domain/auth/gateways/auth-gateway';
-import { User } from '@core/domain/auth/models/user.model';
+import { AuthGateway } from '@domain/auth/gateways/auth.gateway';
+import { User } from '@domain/auth/models/user.model';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',

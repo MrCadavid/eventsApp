@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
-import { AuthGateway } from '@core/domain/auth/gateways/auth-gateway';
-import { User } from '@core/domain/auth/models/user.model';
+import { AuthGateway } from '@domain/auth/gateways/auth.gateway';
+import { User } from '@domain/auth/models/user.model';
 import { environment } from '@env/environment';
 
 @Injectable({

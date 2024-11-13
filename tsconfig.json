@@ -5,9 +5,14 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-       "@auth/*": ["app/auth/*"],
        "@env/*":["environments/*"],
-       "@core/*": ["../core/*"]
+       "@application/auth/*": ["../core/application/auth/*"],
+       "@domain/auth/*": ["../core/domain/auth/*"],
+       "@infrastructure/auth/*": ["../core/infrastructure/auth/*"],
+
+       "@application/events/*": ["../core/application/events/*"],
+       "@domain/events/*": ["../core/domain/events/*"],
+       "@infrastructure/events/*": ["../core/infrastructure/events/*"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
