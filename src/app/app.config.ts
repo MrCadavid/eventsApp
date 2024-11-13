@@ -1,4 +1,4 @@
-import { provideHttpClient, withFetch,withInterceptors } from '@angular/common/http';
+import { provideHttpClient,withFetch} from '@angular/common/http';
 import { ApplicationConfig,provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withFetch(),withInterceptors([authInterceptor])),
+    provideHttpClient(withFetch()),
     provideAnimations(),
     {
       provide:AuthGateway, useClass:AuthService

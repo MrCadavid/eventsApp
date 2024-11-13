@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
-
 import { AuthGateway } from '@core/domain/auth/gateways/auth-gateway';
 import { User } from '@core/domain/auth/models/user.model';
 import { environment } from '@env/environment';
@@ -15,7 +14,7 @@ export class AuthService implements AuthGateway {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<User> {
-    return of<User>({id:"1", email, token:"6734bb62"})
+    return of<User>({id:"1", email, token:"6734bb62", role:"admin"})
   }
 
   logout(): Observable<void> {
