@@ -4,6 +4,11 @@ export const routes: Routes = [
     {
         path: 'login',
         title: 'Login',
-        loadComponent: async () => (await import('@auth/components/login/login.component')).LoginComponent,
+        loadComponent: async () => (await import('./login/login.component')).LoginComponent,
+    },
+    {
+        path:'',
+        redirectTo:'login',
+        pathMatch:'full'
     }
 ];

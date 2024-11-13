@@ -1,6 +1,19 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [{
-  path: 'auth',
-  loadChildren: async () => (await import('./auth')).routes,
-}];
+import {AuthGuard} from '@core/application/auth/guards/auth.guard';
+export const routes: Routes = [
+  {
+    path: 'auth',
+    loadChildren: async () => (await import('./auth')).routes,
+  },
+  {
+    path: 'events',
+    loadChildren: async () => (await import('./events')).routes,
+    canActivate: [AuthGuard],
+    
+  },
+  {
+    path: '',
+    redirectTo: 'events',
+    pathMatch: 'full'
+  }
+];
