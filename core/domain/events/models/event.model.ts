@@ -1,8 +1,17 @@
+interface Responsible{
+    id:string,
+    name:string,
+    email:string,
+    role:string,
+    createdAt:Date
+}
+
 export interface Event {
     id: string,
     type: string,
-    manager: string,
+    responsible: Responsible,
     date: Date,
-    time: string,
     location: string
 }
+
+

@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy } from '@angular/core';
-import { Component, OnInit, inject } from '@angular/core';
+
+import { Component, OnInit, inject,ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthUseCases } from '@application/auth/use-cases/auth.usecases';
 import {environment} from '@env/environment';
-import { CommonModule } from '@angular/common';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule,NgOptimizedImage } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit {
   protected loginForm!: FormGroup;
   protected fb = inject(FormBuilder);
   protected router = inject(Router);
-  private loginUser=inject(AuthUseCases)
+  private readonly loginUser=inject(AuthUseCases)
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
