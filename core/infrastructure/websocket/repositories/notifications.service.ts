@@ -1,13 +1,14 @@
 import { Injectable,Inject } from '@angular/core';
-import { IMessage } from '@stomp/stompjs';
+import { WebSocketUseCases } from '@application/websocket/use-cases/websocket.usecases';
+import { Client, IMessage } from '@stomp/stompjs';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { WebSocketService } from './websocket.service';
+
 
 @Injectable({providedIn: 'root'})
 export class NotificationService {
     
 
-    private readonly websocket=Inject(WebSocketService);
+    private readonly websocket=Inject(WebSocketUseCases<Client>);
     private readonly notificationsSubject = new BehaviorSubject<Notification[]>([]);
 
 

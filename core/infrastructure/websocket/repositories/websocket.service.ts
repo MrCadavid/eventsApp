@@ -6,7 +6,7 @@ import {environment} from '@env/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class WebSocketService implements WebSocketPort {
+export class WebSocketService implements WebSocketPort<Client> {
 
   private readonly _client: Client;
 

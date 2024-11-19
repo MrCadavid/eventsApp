@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { WebSocketGateway } from '../../../domain/websocket/gateways/websocket.gateway';
 
 
-
-
 @Injectable({
   providedIn: 'root',
 })
-export class WebSocketUseCases {
-  constructor(private readonly websocketGateway: WebSocketGateway) {}
+export class WebSocketUseCases<T> {
+  constructor(private readonly websocketGateway: WebSocketGateway<T>) {}
 
   connect(): void{
     this.websocketGateway.connect();
@@ -16,5 +14,9 @@ export class WebSocketUseCases {
 
   disconnect():void{
     return this.websocketGateway.disconnect();
+  }
+
+  getClient(){
+    return this.websocketGateway.client;
   }
 }
