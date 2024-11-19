@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { EventUseCases } from '@application/events/use-cases/event.usecases';
+import { NotificationsUseCases } from '@application/websocket/use-cases/notifications.usecases';
 import { WebSocketUseCases } from '@application/websocket/use-cases/websocket.usecases';
 
 import { Event } from '@domain/events/models/event.model';
@@ -20,6 +21,7 @@ export class ListComponent implements OnInit {
   private readonly eventsUseCases=inject(EventUseCases);
 
   private readonly websocket=inject(WebSocketUseCases<Client>);
+  private readonly notifications=inject(NotificationsUseCases);
 
 
 
@@ -30,10 +32,13 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isBrowser) {
-      this.websocket.connect()
+      this.websocket.connect();
+      
+      
     }
     this.eventsUseCases.get().subscribe((events:Event[])=>{
       console.log(events)
+      this.notifications.subscribe();
     })
   }
 

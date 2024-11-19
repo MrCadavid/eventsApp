@@ -1,6 +1,6 @@
 export interface Notification{
         id: number,
-        message: string
+        message: string,
         eventId: number,
         sentAt: Date
 }

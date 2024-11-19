@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Client} from '@stomp/stompjs';
 import { WebSocketPort } from '@domain/websocket/models/websocket.model';
 import {environment} from '@env/environment';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +11,12 @@ import {environment} from '@env/environment';
 export class WebSocketService implements WebSocketPort<Client> {
 
   private readonly _client: Client;
+  private readonly _connected= new Subject<boolean>();
+  private readonly clientSubject= new Subject<Client>()
+
 
   get client():Client{
-    return this._client;
+    return this._client
   }
 
 
@@ -30,6 +35,7 @@ export class WebSocketService implements WebSocketPort<Client> {
 
     // Activate the client
     this._client.activate();
+    this.clientSubject.next(this._client)
   }
 
 
@@ -39,6 +45,7 @@ export class WebSocketService implements WebSocketPort<Client> {
   connect(): void {
     this._client.onConnect = () => {
       console.log('Connected to WebSocket');
+      this._connected.next(true)
     };
   }
 

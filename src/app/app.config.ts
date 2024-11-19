@@ -11,6 +11,8 @@ import {EventGateway} from '@domain/events/gateways/event.gateway';
 import { WebSocketGateway } from '@domain/websocket/gateways/websocket.gateway';
 import { WebSocketService } from '@infrastructure/websocket/repositories/websocket.service';
 import { routes } from './app.routes';
+import { NotificationGateway } from '@domain/notifications/gateways/notification.gateway';
+import { NotificationService } from '@infrastructure/websocket/repositories/notifications.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +28,9 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide:WebSocketGateway, useClass:WebSocketService
+    },
+    {
+      provide:NotificationGateway, useClass:NotificationService
     },
   ],
 };
