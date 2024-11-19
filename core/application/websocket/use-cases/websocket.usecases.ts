@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebSocketGateway } from '../../../domain/websocket/gateways/websocket.gateway';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -18,5 +19,9 @@ export class WebSocketUseCases<T> {
 
   getClient(){
     return this.websocketGateway.client;
+  }
+
+  status():Observable<boolean>{
+    return this.websocketGateway.status;
   }
 }

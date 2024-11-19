@@ -17,28 +17,18 @@ import { Client } from '@stomp/stompjs';
 })
 export class ListComponent implements OnInit {
  
-  
   private readonly eventsUseCases=inject(EventUseCases);
-
-  private readonly websocket=inject(WebSocketUseCases<Client>);
   private readonly notifications=inject(NotificationsUseCases);
 
 
-
-  get isBrowser():boolean{
-   return typeof window!=='undefined'
-  }
-
-
   ngOnInit(): void {
-    if (this.isBrowser) {
-      this.websocket.connect();
-      
-      
-    }
+
+    this.notifications.getNotifications().subscribe((notifications)=>{
+      console.log(notifications)
+    })
+
     this.eventsUseCases.get().subscribe((events:Event[])=>{
       console.log(events)
-      this.notifications.subscribe();
     })
   }
 

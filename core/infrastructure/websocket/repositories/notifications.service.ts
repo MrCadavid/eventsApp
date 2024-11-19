@@ -1,4 +1,4 @@
-import { Injectable,Inject } from '@angular/core';
+import { Injectable,inject } from '@angular/core';
 import { WebSocketUseCases } from '@application/websocket/use-cases/websocket.usecases';
 import { NotificationGateway } from '@domain/notifications/gateways/notification.gateway';
 import { Notification } from '@domain/notifications/models/notification.model';
@@ -10,13 +10,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class NotificationService implements NotificationGateway {
     
 
-  private readonly websocket=Inject(WebSocketUseCases<Client>);
+  private readonly websocket=inject(WebSocketUseCases<Client>);
   private readonly notificationsSubject = new BehaviorSubject<Notification[]>([]);
 
 
 
   public subscribe(topic:string): void {
-    console.log(this.websocket.Client)
+    this.websocket.getClient().subscribe(topic, (message: IMessage) => {
+      try {
+        //const notification: Notification[] = JSON.parse(message.body);
+        //this.notificationsSubject.next(notification);
+        console.log('Received notification: ', message);
+      } catch (error) {
+        console.error('Failed to parse notification message: ', message.body, error);
+      }
+    });
   }
 
 

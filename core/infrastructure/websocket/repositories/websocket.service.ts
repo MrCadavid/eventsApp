@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Client} from '@stomp/stompjs';
 import { WebSocketPort } from '@domain/websocket/models/websocket.model';
 import {environment} from '@env/environment';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 
 @Injectable({
@@ -11,31 +11,39 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class WebSocketService implements WebSocketPort<Client> {
 
   private readonly _client: Client;
-  private readonly _connected= new Subject<boolean>();
-  private readonly clientSubject= new Subject<Client>()
+  private readonly _statusSubject= new BehaviorSubject<boolean>(false);
+  
 
 
   get client():Client{
-    return this._client
+    return this._client;
   }
+
+  get status():Observable<boolean>{
+    return this._statusSubject.asObservable();
+  }
+
+
+  get isBrowser():boolean{
+    return typeof window!=='undefined'
+   }
 
 
   constructor() {
     // Configure the STOMP client
     this._client = new Client({
       brokerURL: environment.websocketUrl,
-      reconnectDelay: 5000,
       debug: (str) => console.log('STOMP Debug: ', str),
     });
 
     // Handle STOMP protocol errors
     this._client.onStompError = (error) => {
       console.error('STOMP Error: ', error);
+      this._statusSubject.next(false)
     };
 
     // Activate the client
     this._client.activate();
-    this.clientSubject.next(this._client)
   }
 
 
@@ -43,10 +51,13 @@ export class WebSocketService implements WebSocketPort<Client> {
    * Connects to the WebSocket and sets up subscriptions.
    */
   connect(): void {
-    this._client.onConnect = () => {
-      console.log('Connected to WebSocket');
-      this._connected.next(true)
-    };
+    if (this.isBrowser) {
+      this._client.onConnect = () => {
+        console.log('Connected to WebSocket');
+        this._statusSubject.next(true)
+      };
+    }
+   
   }
 
   
