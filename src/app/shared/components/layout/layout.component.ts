@@ -23,7 +23,5 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
    this.websocket.connect();
    this.websocket.status().subscribe((status:boolean)=>status && this.notifications.subscribe())
-   
-   
   }
 }
