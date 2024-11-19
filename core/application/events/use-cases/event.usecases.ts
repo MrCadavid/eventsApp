@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Event } from '@domain/events/models/event.model';
 import { EventGateway } from '@domain/events/gateways/event.gateway';
 
@@ -7,7 +7,7 @@ import { EventGateway } from '@domain/events/gateways/event.gateway';
   providedIn: 'root',
 })
 export class EventUseCases {
-  constructor(private eventGateway: EventGateway) {}
+  constructor(private readonly eventGateway: EventGateway) {}
 
   post(event: Event): Observable<Event> {
     return this.eventGateway.post(event);

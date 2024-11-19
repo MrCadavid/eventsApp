@@ -8,6 +8,8 @@ import {AuthGateway} from '@domain/auth/gateways/auth.gateway';
 import {EventService} from '@infrastructure/events/repositories/event.service';
 import {EventGateway} from '@domain/events/gateways/event.gateway';
 
+import { WebSocketGateway } from '@domain/websocket/gateways/websocket.gateway';
+import { WebSocketService } from '@infrastructure/websocket/repositories/websocket.service';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -21,6 +23,9 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide:EventGateway, useClass:EventService
+    },
+    {
+      provide:WebSocketGateway, useClass:WebSocketService
     },
   ],
 };

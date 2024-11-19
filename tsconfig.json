@@ -12,7 +12,17 @@
 
        "@application/events/*": ["../core/application/events/*"],
        "@domain/events/*": ["../core/domain/events/*"],
-       "@infrastructure/events/*": ["../core/infrastructure/events/*"]
+       "@infrastructure/events/*": ["../core/infrastructure/events/*"],
+       
+       "@domain/notifications/*": ["../core/domain/notifications/*"],
+
+
+       "@application/websocket/*": ["../core/application/websocket/*"],
+       "@domain/websocket/*": ["../core/domain/websocket/*"],
+       "@infrastructure/websocket/*": ["../core/infrastructure/websocket/*"]
+
+
+
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
