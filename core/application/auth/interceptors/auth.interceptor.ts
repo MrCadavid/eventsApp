@@ -3,7 +3,7 @@ import { environment } from '@env/environment';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const token = localStorage.getItem(environment.tokenKey);
+  const token = localStorage.getItem(environment.userKey);
   const authReq = token ?
     req.clone({
       setHeaders: {

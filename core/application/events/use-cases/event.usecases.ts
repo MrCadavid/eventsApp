@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 import { Event } from '@domain/events/models/event.model';
 import { EventGateway } from '@domain/events/gateways/event.gateway';
+import { Notification } from '@domain/notifications/models/notification.model';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,10 @@ export class EventUseCases {
 
   events(): Observable<Event[]> {
     return this.eventGateway.events;
+  }
+
+  notificationForEvent(id:string, notification:Notification){
+    return this.eventGateway.notificationForEvent(id, notification);
   }
 
   load():void{

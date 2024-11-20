@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Event } from '@domain/events/models/event.model';
 import { EventGateway } from '@domain/events/gateways/event.gateway';
 import { environment } from '@env/environment';
+import { Notification } from '@domain/notifications/models/notification.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +40,10 @@ export class EventService implements EventGateway {
 
   getById(id: string): Observable<Event> {
     return this.http.get<Event>(`${this.apiUrl}/${id}`);
+  }
+
+  notificationForEvent(id:string, notification:Notification):Observable<Notification>{
+    return this.http.post<Notification>(`${this.apiUrl}/${id}/notifications`, notification);
   }
 
   load(){

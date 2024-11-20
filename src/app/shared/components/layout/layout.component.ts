@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -27,7 +26,7 @@ import { EventUseCases } from '@application/events/use-cases/event.usecases';
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit {
   private readonly websocket = inject(WebSocketUseCases<Client>);
   private readonly notifications = inject(NotificationsUseCases);
   private readonly events = inject(EventUseCases);
@@ -53,10 +52,5 @@ export class LayoutComponent implements OnInit, OnDestroy {
           life: 5000,
         });
       });
-  }
-
-  ngOnDestroy(): void {
-    this.websocket.disconnect();
-    this.websocket.setstatus(false);
   }
 }

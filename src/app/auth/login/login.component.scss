@@ -56,6 +56,17 @@
     }
   }
 
+  .role-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .right-section p-card {
+    padding: 20px;
+  }
+
   @media only screen and (max-width: 768px) {
     .left-section {
       display: none;

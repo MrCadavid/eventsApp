@@ -1,16 +1,9 @@
 import {
   Component,
-  OnInit,
   inject,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { AuthUseCases } from '@application/auth/use-cases/auth.usecases';
+
 import { environment } from '@env/environment';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
@@ -24,7 +17,6 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
     CardModule,
@@ -33,30 +25,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
-  protected loginForm!: FormGroup;
-  protected fb = inject(FormBuilder);
+export class LoginComponent {
   protected router = inject(Router);
-  private readonly loginUser = inject(AuthUseCases);
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['admin@luxuryevents.com', Validators.required],
-      password: ['somepassword', Validators.required],
-    });
+  onRoleSelect(role: string) {
+    const user = {
+      id: 1,
+      name: 'ryan cadavid',
+      email: 'ryan@azure.com',
+      role,
+      createdAt: '2024-11-19T04:38:47.27135',
+    };
+    if(this.isBrowser){
+      localStorage.setItem(environment.userKey, JSON.stringify(user));
+      this.router.navigate(['/events/list']);
+    }
+    
   }
 
-  onLogin() {
-    const { email, password } = this.loginForm.value;
-    this.loginUser.login(email, password).subscribe({
-      next: (user) => {
-        localStorage.setItem(environment.tokenKey, JSON.stringify(user));
-        this.router.navigate(['/events/list']);
-        console.log('Inicio de sesión exitoso');
-      },
-      error: (error) => {
-        console.error('Error en el inicio de sesión', error);
-      },
-    });
+  get isBrowser(){
+    return typeof window!=='undefined';
   }
 }
