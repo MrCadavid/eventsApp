@@ -44,5 +44,4 @@ export class EventService implements EventGateway {
   load(){
     this.get().subscribe((events)=> this.eventsSubject.next(events.reverse()))
   }
-  
 }

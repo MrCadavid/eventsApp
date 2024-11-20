@@ -17,9 +17,5 @@ export class NotificationsUseCases {
 
     getNotification():Observable<Notification>{
         return this.notificationGateway.getNotification()
-    }
-
-
-
-    
+    }   
 }
