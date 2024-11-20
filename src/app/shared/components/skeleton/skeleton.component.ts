@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy,Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-skeleton',

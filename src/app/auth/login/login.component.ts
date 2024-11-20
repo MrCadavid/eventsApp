@@ -1,16 +1,22 @@
-
-import { Component, OnInit, inject,ChangeDetectionStrategy } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { AuthUseCases } from '@application/auth/use-cases/auth.usecases';
-import {environment} from '@env/environment';
-import { CommonModule,NgOptimizedImage } from '@angular/common';
+import { environment } from '@env/environment';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Router } from '@angular/router';
-
-
-
 
 @Component({
   selector: 'app-login',
@@ -22,16 +28,16 @@ import { Router } from '@angular/router';
     InputTextModule,
     ButtonModule,
     CardModule,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   protected loginForm!: FormGroup;
   protected fb = inject(FormBuilder);
   protected router = inject(Router);
-  private readonly loginUser=inject(AuthUseCases)
+  private readonly loginUser = inject(AuthUseCases);
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -41,9 +47,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-
-    const {email, password}=this.loginForm.value;
-    this.loginUser.login(email,password).subscribe({
+    const { email, password } = this.loginForm.value;
+    this.loginUser.login(email, password).subscribe({
       next: (user) => {
         localStorage.setItem(environment.tokenKey, JSON.stringify(user));
         this.router.navigate(['/events/list']);

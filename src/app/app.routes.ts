@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {AuthGuard} from '@application/auth/guards/auth.guard';
+import { AuthGuard } from '@application/auth/guards/auth.guard';
 import { LayoutComponent } from './shared/components/layout/layout.component';
 export const routes: Routes = [
   {
@@ -10,14 +10,12 @@ export const routes: Routes = [
         path: 'events',
         loadChildren: async () => (await import('./events')).routes,
         canActivate: [AuthGuard],
-        
       },
       {
         path: '',
         redirectTo: 'events',
-        pathMatch: 'full'
-      }
-
+        pathMatch: 'full',
+      },
     ],
   },
 
@@ -25,7 +23,4 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: async () => (await import('./auth')).routes,
   },
-
-
-  
 ];
