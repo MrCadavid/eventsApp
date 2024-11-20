@@ -1,1 +1,19 @@
-<p>list works!</p>
+<div class="event-list flex flex-wrap gap-6 justify-around p-4 bg-gray-100">
+    <p-card *ngFor="let event of (events$ | async)" class="event-card w-80 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-2 bg-white">
+      <ng-template pTemplate="header">
+        <div class="event-header flex justify-between items-center text-sm font-bold bg-gray-200 p-3 border-b border-gray-300">
+          <span class="event-type text-blue-600">{{ event.type }}</span>
+          <span class="event-date text-gray-500">{{ event.date | date:'short' }}</span>
+        </div>
+      </ng-template>
+      <div class="event-content p-4">
+        <h3 class="event-title text-lg font-bold text-gray-800">{{ event.type }}</h3>
+        <p class="event-location text-gray-600">{{ event.location }}</p>
+        <div class="event-responsible mt-4 text-sm text-gray-700">
+          <strong class="text-black font-medium">{{ event.responsible.name }}</strong> ({{ event.responsible.role }})
+          <p>{{ event.responsible.email }}</p>
+        </div>
+      </div>
+    </p-card>
+  </div>
+  
