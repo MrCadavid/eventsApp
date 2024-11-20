@@ -15,6 +15,10 @@ export class NotificationsUseCases {
         return this.notificationGateway.getNotifications()
     }
 
+    getNotification():Observable<Notification>{
+        return this.notificationGateway.getNotification()
+    }
+
 
 
     
