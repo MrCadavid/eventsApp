@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['user@luxuryevents.com', Validators.required],
+      email: ['admin@luxuryevents.com', Validators.required],
       password: ['somepassword', Validators.required],
     });
   }
@@ -44,8 +44,8 @@ export class LoginComponent implements OnInit {
 
     const {email, password}=this.loginForm.value;
     this.loginUser.login(email,password).subscribe({
-      next: ({token}) => {
-        localStorage.setItem(environment.tokenKey, token);
+      next: (user) => {
+        localStorage.setItem(environment.tokenKey, JSON.stringify(user));
         this.router.navigate(['/events/list']);
         console.log('Inicio de sesión exitoso');
       },

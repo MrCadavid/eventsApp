@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthUseCases {
-  constructor(private authGateway: AuthGateway) {}
+  constructor(private readonly authGateway: AuthGateway) {}
 
   login(email: string, password: string): Observable<User> {
     return this.authGateway.login(email, password);

@@ -6,8 +6,9 @@ import { Client } from '@stomp/stompjs';
 import { NotificationsUseCases } from '@application/websocket/use-cases/notifications.usecases';
 import { Notification } from '@domain/notifications/models/notification.model';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import {  MessageService } from 'primeng/api';
 import { EventUseCases } from '@application/events/use-cases/event.usecases';
+
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -15,6 +16,7 @@ import { EventUseCases } from '@application/events/use-cases/event.usecases';
   template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
+
     <p-toast></p-toast>
   `,
   providers:[MessageService],
