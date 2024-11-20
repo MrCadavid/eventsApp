@@ -4,21 +4,21 @@
     gap: 1.5rem;
     justify-content: space-around;
     padding: 1rem;
-    background-color: #f9f9f9; /* Fondo suave para distinguir */
+    background-color: #f9f9f9;
   }
   
   .event-card {
-    width: 320px; /* Un poco más ancho para mejor visualización */
-    border-radius: 8px; /* Bordes redondeados */
-    border: 1px solid #ddd; /* Borde más suave */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    width: 320px; 
+    border-radius: 8px;
+    border: 1px solid #ddd; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #fff; /* Fondo blanco */
+    background: #fff; 
   }
   
   .event-card:hover {
-    transform: translateY(-8px); /* Efecto hover más marcado */
+    transform: translateY(-8px); 
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   }
   
@@ -28,14 +28,14 @@
     align-items: center;
     font-size: 0.85rem;
     padding: 0.75rem 1rem;
-    background-color: #f0f0f0; /* Contraste de encabezado */
+    background-color: #f0f0f0; 
     border-bottom: 1px solid #ddd;
     color: #555;
     font-weight: bold;
   }
   
   .event-type {
-    color: #1976d2; /* Color destacado */
+    color: #1976d2;
   }
   
   .event-date {
@@ -76,4 +76,7 @@
     font-size: 0.85rem;
     color: #666;
   }
-  
+  .add-event{
+    position: absolute;
+    right: 10px;
+  }

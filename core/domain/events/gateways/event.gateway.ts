@@ -7,4 +7,6 @@ export abstract class EventGateway {
   abstract delete(id: string): Observable<void>;
   abstract get(): Observable<Event[]>;
   abstract getById(id: string): Observable<Event>;
+  abstract events: Observable<Event[]>;
+  abstract load():void;
 }

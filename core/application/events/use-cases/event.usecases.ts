@@ -28,4 +28,12 @@ export class EventUseCases {
   getById(id: string): Observable<Event> {
     return this.eventGateway.getById(id);
   }
+
+  events(): Observable<Event[]> {
+    return this.eventGateway.events;
+  }
+
+  load():void{
+    this.eventGateway.load();
+  }
 }

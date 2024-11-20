@@ -7,6 +7,7 @@ import { NotificationsUseCases } from '@application/websocket/use-cases/notifica
 import { Notification } from '@domain/notifications/models/notification.model';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { EventUseCases } from '@application/events/use-cases/event.usecases';
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -23,6 +24,7 @@ export class LayoutComponent implements OnInit {
   
   private readonly websocket=inject(WebSocketUseCases<Client>);
   private readonly notifications=inject(NotificationsUseCases);
+  private readonly events=inject(EventUseCases);
   private readonly messageService = inject(MessageService);
   
   
@@ -35,6 +37,7 @@ export class LayoutComponent implements OnInit {
 
   private listenToNotifications(): void {
     this.notifications.getNotification().subscribe((notification:Notification)=>{
+      this.events.load();
       this.messageService.add({
         severity: 'info',
         summary: 'Nueva Notificación',
