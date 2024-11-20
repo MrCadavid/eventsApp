@@ -10,7 +10,7 @@ export interface Event {
     id: string,
     type: string,
     responsible: Responsible,
-    date: Date,
+    date: string,
     location: string
 }
 

@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     this.loginUser.login(email,password).subscribe({
       next: ({token}) => {
         localStorage.setItem(environment.tokenKey, token);
+        this.router.navigate(['/events/list']);
         console.log('Inicio de sesión exitoso');
       },
       error: (error) => {

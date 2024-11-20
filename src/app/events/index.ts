@@ -12,7 +12,7 @@ export const routes: Routes = [
         loadComponent: async () => (await import('./create/create.component')).CreateComponent,
     },
     {
-        path: 'edit',
+        path: 'edit/:id',
         title: 'edit events',
         loadComponent: async () => (await import('./edit/edit.component')).EditComponent,
     },

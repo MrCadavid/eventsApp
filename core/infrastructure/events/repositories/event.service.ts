@@ -1,4 +1,3 @@
-// src/app/infrastructure/events/repositories/event.repository.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -11,11 +10,11 @@ import { environment } from '@env/environment';
 })
 export class EventService implements EventGateway {
 
-  private apiUrl = `${environment.apiUrl}/api/events`;
+  private readonly apiUrl = `${environment.apiUrl}/api/events`;
 
-  private eventsSubject= new BehaviorSubject<Event[]>([]);
+  private readonly eventsSubject= new BehaviorSubject<Event[]>([]);
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
     this.load();
   }
 

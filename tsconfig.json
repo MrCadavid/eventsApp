@@ -6,6 +6,7 @@
     "baseUrl": "src",
     "paths": {
        "@env/*":["environments/*"],
+       "@shared/*":["../core/shared/*"],
        "@application/auth/*": ["../core/application/auth/*"],
        "@domain/auth/*": ["../core/domain/auth/*"],
        "@infrastructure/auth/*": ["../core/infrastructure/auth/*"],
@@ -19,10 +20,10 @@
 
        "@application/websocket/*": ["../core/application/websocket/*"],
        "@domain/websocket/*": ["../core/domain/websocket/*"],
-       "@infrastructure/websocket/*": ["../core/infrastructure/websocket/*"]
+       "@infrastructure/websocket/*": ["../core/infrastructure/websocket/*"],
+       
 
-
-
+    
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
