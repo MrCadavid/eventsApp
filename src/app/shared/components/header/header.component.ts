@@ -15,7 +15,7 @@ export class HeaderComponent {
   public items = [
     {
       label: 'Home',
-      link: '/projects/list',
+      link: '/events/list',
       icon: 'pi pi-home',
     },
   ];

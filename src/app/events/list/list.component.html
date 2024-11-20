@@ -1,34 +1,45 @@
-<!-- Botón para crear un evento -->
-<div class="add-event">
-  <p-button label="Create Event" icon="pi pi-plus" class="p-button-rounded p-button-lg p-button-success p-shadow-2"></p-button>
-</div>
-
-<h2 class="text-3xl font-bold text-center w-full mb-2 text-gray-800">Luxury Events</h2>
-
-
-<div class="relative">
-
-  <div class="event-list flex flex-wrap gap-2 justify-around p-4 bg-gray-100 ">
-    <p-card *ngFor="let event of (events$ | async)" class="event-card w-80 rounded-lg shadow-xl bg-white relative hover:shadow-2xl transition-all">
-      <ng-template pTemplate="header">
-        <div class="event-header flex justify-between items-center text-sm font-bold bg-gray-200 p-3 border-b border-gray-300">
-          <span class="event-type text-blue-600">{{ event.type }}</span>
-          <span class="event-date text-gray-500">{{ event.date | date:'short' }}</span>
-        </div>
-      </ng-template>
-      <div class="event-content p-4">
-        <h3 class="event-title text-lg font-bold text-gray-800">{{ event.type }}</h3>
-        <p class="event-location text-gray-600">{{ event.location }}</p>
-        <div class="event-responsible mt-4 text-sm text-gray-700">
-          <strong class="text-black font-medium">{{ event.responsible.name }}</strong> ({{ event.responsible.role }})
-          <p>{{ event.responsible.email }}</p>
-        </div>
-      </div>
-
-      <div class="absolute bottom-4 right-4 flex gap-2">
-        <p-button icon="pi pi-pencil" class="p-button-rounded p-button-info p-shadow-2 p-button-sm hover:p-button-lg transition-all"></p-button>
-        <p-button icon="pi pi-trash" class="p-button-rounded p-button-danger p-shadow-2 p-button-sm hover:p-button-lg transition-all"></p-button>
-      </div>
-    </p-card>
+<div class="container">
+  <div class="add-event">
+    <p-button routerLink="/events/create" routerLinkActive="router-link-active"  label="Create Event" icon="pi pi-plus" class="p-button-rounded p-button-lg p-button-success p-shadow-2"></p-button>
   </div>
+  
+  <h2 class="text-3xl font-bold text-center w-full mb-2 text-gray-800">Luxury Events</h2>
+  
+  
+  <div *ngIf="events$ | async as events; else loading">
+    <div class="relative">
+      <div class="event-list flex flex-wrap gap-2 justify-around p-4 bg-gray-100">
+        <p-card *ngFor="let event of events" class="event-card w-80 rounded-lg shadow-xl bg-white relative hover:shadow-2xl transition-all">
+          <ng-template pTemplate="header">
+            <div class="event-header flex justify-between items-center text-sm font-bold bg-gray-200 p-3 border-b border-gray-300">
+              <span class="event-type text-blue-600">{{ event.type }}</span>
+              <span class="event-date text-gray-500">{{ event.date | date:'short' }}</span>
+            </div>
+          </ng-template>
+          <div class="event-content p-4">
+            <h3 class="event-title text-lg font-bold text-gray-800">{{ event.type }}</h3>
+            <p class="event-location text-gray-600">{{ event.location }}</p>
+            <div class="event-responsible mt-4 text-sm text-gray-700">
+              <strong class="text-black font-medium">{{ event.responsible.name }}</strong> ({{ event.responsible.role }})
+              <p>{{ event.responsible.email }}</p>
+            </div>
+          </div>
+  
+          <div class="absolute bottom-4 right-4 flex gap-2">
+            <p-button routerLink="/events/edit" icon="pi pi-pencil" class="p-button-rounded p-button-info p-shadow-2 p-button-sm hover:p-button-lg transition-all"></p-button>
+            <p-button icon="pi pi-trash" class="p-button-rounded p-button-danger p-shadow-2 p-button-sm hover:p-button-lg transition-all"></p-button>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <app-skeleton/>
+  </ng-template>
+   
 </div>
+
+
+
+
