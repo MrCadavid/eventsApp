@@ -24,4 +24,7 @@ export class WebSocketUseCases<T> {
   status():Observable<boolean>{
     return this.websocketGateway.status;
   }
+  setstatus(status:boolean):void{
+   this.websocketGateway.setStatus(status);
+  }
 }

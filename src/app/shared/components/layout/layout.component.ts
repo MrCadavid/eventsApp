@@ -22,7 +22,6 @@ import { EventUseCases } from '@application/events/use-cases/event.usecases';
   template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
-
     <p-toast></p-toast>
   `,
   providers: [MessageService],
@@ -58,5 +57,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.websocket.disconnect();
+    this.websocket.setstatus(false);
   }
 }

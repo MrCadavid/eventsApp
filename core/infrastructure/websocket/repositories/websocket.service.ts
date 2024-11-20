@@ -23,6 +23,10 @@ export class WebSocketService implements WebSocketPort<Client> {
     return this._statusSubject.asObservable();
   }
 
+  setStatus(status: boolean): void {
+    this._statusSubject.next(status);
+  }
+
 
   get isBrowser():boolean{
     return typeof window!=='undefined'
